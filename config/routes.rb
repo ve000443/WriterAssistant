@@ -1,6 +1,8 @@
 WriterAssistant::Application.routes.draw do
-  #resources: :chapters
+  resources :chapters
   root 'static_pages#home'
+
+  match '/newchap',  to: 'chapters#new',   via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

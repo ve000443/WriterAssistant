@@ -1,0 +1,10 @@
+<% provide(:title, 'All Chapters') %>
+<h1>All Chapters</h1>
+<h2>
+<%= link_to "Create Chapter", newchap_path,
+                                class: "btn btn-large btn-primary" %>
+</h2>
+
+<ul class="chapters">
+  <%= render @chapters %>
+</ul>

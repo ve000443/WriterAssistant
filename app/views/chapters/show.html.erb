@@ -1,0 +1,6 @@
+<% provide(:title, @chapter.number) %>
+<h1><%= @chapter.title %></h1>
+
+<%= link_to "Edit", edit_chapter_path(@chapter) %>
+<%= link_to "Delete", @chapter, method: :delete,
+                                  data: { confirm: "You sure?" } %>
