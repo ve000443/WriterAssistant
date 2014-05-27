@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527140328) do
+ActiveRecord::Schema.define(version: 20140527162617) do
+
+  create_table "anecdotes", force: true do |t|
+    t.string   "subject"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "chapters", force: true do |t|
     t.integer  "number"
@@ -21,5 +27,11 @@ ActiveRecord::Schema.define(version: 20140527140328) do
   end
 
   add_index "chapters", ["number"], name: "index_chapters_on_number", unique: true
+
+  create_table "characters", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

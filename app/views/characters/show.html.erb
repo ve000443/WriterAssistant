@@ -1,0 +1,7 @@
+<% provide(:title, @character.name) %>
+<h1><%= @character.name %></h1>
+<h2>Characted ID : <%= @character.id %></h2>
+
+<%= link_to "Edit", edit_character_path(@character) %>
+<%= link_to "Delete", @character, method: :delete,
+                                  data: { confirm: "You sure?" } %>

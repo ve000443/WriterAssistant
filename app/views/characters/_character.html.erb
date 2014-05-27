@@ -1,0 +1,9 @@
+<li>
+  Character n° <%= character.id %>
+   : 
+  <%= link_to character.name, character %>
+  <br>
+  <%= link_to "Edit", edit_character_path(character) %>
+  <%= link_to "Delete", character, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+</li>

@@ -1,0 +1,10 @@
+<% provide(:title, 'All Characters') %>
+<h1>All Characters</h1>
+<h2>
+<%= link_to "Create Character", newchar_path,
+                                class: "btn btn-large btn-primary" %>
+</h2>
+
+<ul class="characters">
+  <%= render @characters %>
+</ul>
