@@ -1,7 +1,16 @@
 WriterAssistant::Application.routes.draw do
   resources :chapters
-  resources :characters
-  resources :scenes
+  resources :character_relationship, only: [:create, :destroy]
+  resources :characters do 
+    member do
+      get :appearances
+    end
+  end
+  resources :scenes do
+    member do
+      get :characters
+    end
+  end
   root 'static_pages#home'
 
   match '/newchap',  to: 'chapters#new',   via: 'get'

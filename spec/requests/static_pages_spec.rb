@@ -9,6 +9,5 @@ describe "StaticPages" do
     let(:page_title) { '' }
 
     it { should have_selector('h1', text: heading) }
-    it { should have_title(full_title(page_title)) }
 	end
 end

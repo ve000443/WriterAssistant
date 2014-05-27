@@ -4,12 +4,29 @@
 	Scene Location : <%= @scene.location %>
 	<br>
 	Scene Period : <%= @scene.period %>
+	<br>
+    <strong id="characters" class="stat">
+    	There is <%= pluralize(@scene.characters.count, "character") %> appearing in this scene
+    </strong>
 </h2>
 
 Content : 
 <br>
 <%= @scene.content %>
 <br>
+<% if @scene.characters.any? %>
+	<br>
+	<div class="characters">
+		Characters : 
+		<ul>
+    <% @scene.characters.each do |character| %>
+    	<li>
+      <%= link_to character.name, character %>
+      </li>
+    <% end %>
+  	</ul>
+  </div>
+<% end %>
 
 <%= link_to "Edit", edit_scene_path(@scene) %>
 <%= link_to "Delete", @scene, method: :delete,

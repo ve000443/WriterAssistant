@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527165216) do
+ActiveRecord::Schema.define(version: 20140527232130) do
 
   create_table "anecdotes", force: true do |t|
     t.string   "subject"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20140527165216) do
   end
 
   add_index "chapters", ["number"], name: "index_chapters_on_number", unique: true
+
+  create_table "character_relationships", force: true do |t|
+    t.integer  "character_id"
+    t.integer  "scene_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "character_relationships", ["character_id", "scene_id"], name: "index_character_relationships_on_character_id_and_scene_id", unique: true
+  add_index "character_relationships", ["character_id"], name: "index_character_relationships_on_character_id"
+  add_index "character_relationships", ["scene_id"], name: "index_character_relationships_on_scene_id"
 
   create_table "characters", force: true do |t|
     t.string   "name"

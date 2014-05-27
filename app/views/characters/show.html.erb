@@ -1,6 +1,27 @@
 <% provide(:title, @character.name) %>
 <h1><%= @character.name %></h1>
-<h2>Characte ID : <%= @character.id %></h2>
+<h2>Character ID : <%= @character.id %></h2>
+<h3>
+	<div class="stats">
+	  <a href="<%= appearances_character_path(@character) %>">
+	    <strong id="appearances" class="stat">
+	    	Appear in <%= pluralize(@character.appearances.count, "scene") %>
+	    </strong>
+	  </a>
+	</div>
+</h3>
+
+<% if @character.appearances.any? %>
+	<div class="appearances">
+	<ul>
+    <% @character.appearances.each do |scene| %>
+    	<li>
+      <%= link_to "Scene n° #{scene.id} : #{scene.location}, #{scene.period}", scene %>
+      </li>
+    <% end %>
+  </ul>
+  </div>
+<% end %>
 
 <%= link_to "Edit", edit_character_path(@character) %>
 <%= link_to "Delete", @character, method: :delete,

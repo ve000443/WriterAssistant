@@ -1,0 +1,9 @@
+<% @character ||= current_character %>
+<div class="stats">
+  <a href="<%= appearance_character(@character) %>">
+    <strong id="appearances" class="stat">
+      <%= @character.appearances.count %>
+    </strong>
+    Appearances
+  </a>
+</div>
