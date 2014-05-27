@@ -1,0 +1,10 @@
+<% provide(:title, 'All Scenes') %>
+<h1>All Scenes</h1>
+<h2>
+<%= link_to "Create Scene", newscene_path,
+                                class: "btn btn-large btn-primary" %>
+</h2>
+
+<ul class="scenes">
+  <%= render @scenes %>
+</ul>

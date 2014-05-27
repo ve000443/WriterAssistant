@@ -1,0 +1,10 @@
+<li>
+	<%= link_to "Scene n° #{scene.id} : #{scene.location}, #{scene.period}", scene %>
+  <ul>
+  	<li><%= scene.content %></li>
+  </ul>
+  <br>
+  <%= link_to "Edit", edit_scene_path(scene) %>
+  <%= link_to "Delete", scene, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+</li>

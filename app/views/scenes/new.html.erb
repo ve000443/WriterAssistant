@@ -1,0 +1,21 @@
+<% provide(:title, 'Create Scene') %>
+<h1>New Scene</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@scene) do |f| %>
+    	<%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+
+      <%= f.label :period %>
+      <%= f.text_field :period %>
+
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+
+      <%= f.submit "Create scene", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

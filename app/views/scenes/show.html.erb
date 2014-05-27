@@ -1,0 +1,16 @@
+<% provide(:title, @scene.id) %>
+<h1>Scene n°<%= @scene.id %></h1>
+<h2>
+	Scene Location : <%= @scene.location %>
+	<br>
+	Scene Period : <%= @scene.period %>
+</h2>
+
+Content : 
+<br>
+<%= @scene.content %>
+<br>
+
+<%= link_to "Edit", edit_scene_path(@scene) %>
+<%= link_to "Delete", @scene, method: :delete,
+                                  data: { confirm: "You sure?" } %>
