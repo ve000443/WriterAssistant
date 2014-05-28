@@ -1,0 +1,19 @@
+<% provide(:title, @anecdote.id) %>
+<h1><%= @anecdote.subject %></h1>
+<h2>
+Anecdote ID : <%= @anecdote.id %> <br>
+<%= link_to "Edit", edit_anecdote_path(@anecdote) %>
+<%= link_to "Delete", @anecdote, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+</h2>
+<% if @anecdote.chapter %>
+	Is bound to 
+	<br>
+	<%= render @anecdote.chapter %>
+<% else %>
+	Isn't bound to any Chapter yet
+<% end %>
+<br><br>
+Content :
+<br>
+<%= @anecdote.content %>

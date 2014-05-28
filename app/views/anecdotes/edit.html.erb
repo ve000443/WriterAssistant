@@ -1,0 +1,18 @@
+<% provide(:title, 'Update Anecdote') %>
+<h1>Update Anecdote</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@anecdote) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :subject %>
+      <%= f.text_field :subject %>
+
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+
+      <%= f.submit "Update anecdote", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527232130) do
+ActiveRecord::Schema.define(version: 20140528002648) do
 
   create_table "anecdotes", force: true do |t|
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "chapter_id"
+    t.string   "content"
   end
+
+  add_index "anecdotes", ["chapter_id"], name: "index_anecdotes_on_chapter_id"
 
   create_table "chapters", force: true do |t|
     t.integer  "number"
@@ -51,6 +55,9 @@ ActiveRecord::Schema.define(version: 20140527232130) do
     t.string   "period"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "chapter_id"
   end
+
+  add_index "scenes", ["chapter_id"], name: "index_scenes_on_chapter_id"
 
 end

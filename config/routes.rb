@@ -1,5 +1,6 @@
 WriterAssistant::Application.routes.draw do
   resources :chapters
+  resources :anecdotes
   resources :character_relationship, only: [:create, :destroy]
   resources :characters do 
     member do
@@ -13,9 +14,10 @@ WriterAssistant::Application.routes.draw do
   end
   root 'static_pages#home'
 
-  match '/newchap',  to: 'chapters#new',   via: 'get'
-  match '/newchar',  to: 'characters#new',   via: 'get'
-  match '/newscene',  to: 'scenes#new',   via: 'get'
+  match '/newchap',    to: 'chapters#new',    via: 'get'
+  match '/newchar',    to: 'characters#new',  via: 'get'
+  match '/newscene',   to: 'scenes#new',      via: 'get'
+  match '/newanecdote',to: 'anecdotes#new',   via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

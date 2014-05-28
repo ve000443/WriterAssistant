@@ -5,19 +5,31 @@
 	<br>
 	Scene Period : <%= @scene.period %>
 	<br>
-    <strong id="characters" class="stat">
-    	There is <%= pluralize(@scene.characters.count, "character") %> appearing in this scene
-    </strong>
+
+  <%= link_to "Edit", edit_scene_path(@scene) %>
+  <%= link_to "Delete", @scene, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+    
 </h2>
 
 Content : 
 <br>
 <%= @scene.content %>
-<br>
+<br><br>
+<% if @scene.chapter %>
+  <strong> Is bound to </strong>
+  <ul>
+    <%= render @scene.chapter %>
+  </ul>
+<% else %>
+  <strong>Isn't bound to any Chapter yet</strong>
+<% end %>
 <% if @scene.characters.any? %>
 	<br>
 	<div class="characters">
-		Characters : 
+		<strong id="characters" class="stat">
+    	There is <%= pluralize(@scene.characters.count, "character") %> appearing in this scene :
+    </strong>
 		<ul>
     <% @scene.characters.each do |character| %>
     	<li>
@@ -27,7 +39,3 @@ Content :
   	</ul>
   </div>
 <% end %>
-
-<%= link_to "Edit", edit_scene_path(@scene) %>
-<%= link_to "Delete", @scene, method: :delete,
-                                  data: { confirm: "You sure?" } %>

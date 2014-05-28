@@ -6,5 +6,11 @@
 </h2>
 
 <ul class="chapters">
-  <%= render @chapters %>
+	<% @chapters.each do |chapter| %>
+	  <%= render chapter %>
+	  <%= link_to "Edit", edit_chapter_path(chapter) %>
+	  <%= link_to "Delete", chapter, method: :delete,
+	                                  data: { confirm: "You sure?" } %>
+	  <br><br>
+	 <% end %>
 </ul>

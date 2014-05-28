@@ -6,5 +6,11 @@
 </h2>
 
 <ul class="scenes">
-  <%= render @scenes %>
+	<% @scenes.each do |scene| %>
+   	<%= render scene %>
+	  <%= link_to "Edit", edit_scene_path(scene) %>
+	  <%= link_to "Delete", scene, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <br><br><br>
+  <% end %>
 </ul>

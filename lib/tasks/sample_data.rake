@@ -4,6 +4,9 @@ namespace :db do
     make_chapters
     make_characters
     make_scenes
+    make_scenes_links
+    make_anecdotes
+    make_anecdotes_links
     make_relationships
   end
 
@@ -35,11 +38,40 @@ namespace :db do
     end
   end
 
+  def make_scenes_links
+    scenes = Scene.all
+    scenes[0..5].each do |scene|
+      scene.chapter_id = 1
+      scene.save
+    end
+    scenes[5..10].each do |scene|
+      scene.chapter_id = 2
+      scene.save
+    end
+  end
+
+  def make_anecdotes
+    20.times do |n|
+      subject = Faker::Lorem.word
+      content = Faker::Lorem.sentence
+      Anecdote.create!(subject: subject, content: content)
+    end
+  end
+
+  def make_anecdotes_links
+    anecdotes = Anecdote.all
+    anecdotes.each do |anecdote| 
+      anecdote.chapter_id = 1 + rand(3)
+      anecdote.save
+    end
+  end
+
+
   def make_relationships
     characters = Character.all
     appearing_characters = characters[0..2]
     appearing_characters.each { |char| char.appear!(Scene.find(1)) }
-    appearing_characters = characters[0..2]
+    appearing_characters = characters[0..6]
     appearing_characters.each { |char| char.appear!(Scene.find(3)) }
     appearing_characters = characters[11..20]
     appearing_characters.each { |char| char.appear!(Scene.find(2)) }

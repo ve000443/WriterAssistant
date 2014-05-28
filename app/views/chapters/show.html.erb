@@ -1,6 +1,32 @@
 <% provide(:title, @chapter.number) %>
 <h1><%= @chapter.title %></h1>
-
+<h2>
+Chapter ID : <%= @chapter.id %> <br>
 <%= link_to "Edit", edit_chapter_path(@chapter) %>
 <%= link_to "Delete", @chapter, method: :delete,
                                   data: { confirm: "You sure?" } %>
+</h2>
+
+<% if @chapter.anecdotes.any? %>
+  <h3>There is <%= pluralize(@chapter.anecdotes.count, "anecdote") %> for this chapter</h3>
+  <ul>
+  	<% @chapter.anecdotes.each do |anecdote| %>
+	   	<%= render anecdote %>
+    <% end %>
+	</ul>
+<% else %>
+	<h3>There is no anecdotes for this chapter</h3>
+<% end %>
+
+<br><br>
+
+<% if @chapter.scenes.any? %>
+	<h3>There is <%= pluralize(@chapter.scenes.count, "scene")%> for this chapter</h3>
+	<ul>
+	  <% @chapter.scenes.each do |scene| %>
+	   	<%= render scene %>
+    <% end %>
+	<ul>
+<% else %>
+	<h3>There is no scenes for this chapter</h3>
+<% end %>

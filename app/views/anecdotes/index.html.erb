@@ -1,0 +1,16 @@
+<% provide(:title, 'All Anecdotes') %>
+<h1>All Anecdotes</h1>
+<h2>
+<%= link_to "Create Anecdotes", newanecdote_path,
+                                class: "btn btn-large btn-primary" %>
+</h2>
+
+<ul class="anecdotes">
+	<% @anecdotes.each do |anecdote| %>
+  	<%= render anecdote %>
+  	<%= link_to "Edit", edit_anecdote_path(anecdote) %>
+		<%= link_to "Delete", anecdote, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+    <br><br>
+  <% end %>
+</ul>

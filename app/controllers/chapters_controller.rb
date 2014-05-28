@@ -5,6 +5,8 @@ class ChaptersController < ApplicationController
 
   def show
   	@chapter = Chapter.find(params[:id])
+    @scenes = @chapter.scenes
+    @anecdotes = @chapter.anecdotes
   end
 
   def index

@@ -1,9 +1,4 @@
 <li>
-  Chapter n° <%= link_to chapter.number, chapter %>
-   : 
-  <%= chapter.title %>
+	<%= link_to "Chapter n° #{chapter.number} : #{chapter.title}", chapter %>
   <br>
-  <%= link_to "Edit", edit_chapter_path(chapter) %>
-  <%= link_to "Delete", chapter, method: :delete,
-                                  data: { confirm: "You sure?" } %>
 </li>
