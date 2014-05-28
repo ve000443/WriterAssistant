@@ -1,0 +1,8 @@
+<h3>
+	<strong>There is currently <%= pluralize(Tag.count, "tag") %> in use : </strong>
+	<ul><br>
+		<% @tags.each do |tag| %>
+				<li><%= link_to tag.name, tag %> used <%= pluralize(tag.appearances.count, "time") %> </li><br>
+		<% end %>
+	</ul>
+</h3>

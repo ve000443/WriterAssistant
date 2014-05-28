@@ -1,0 +1,15 @@
+<h1><%= @tag.name %></h1>
+<h2>
+	Tag ID : <%= @tag.id %>
+	<br>
+	<%= link_to "Edit", edit_tag_path(@tag) %>
+	<%= link_to "Delete", @tag, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+</h2>
+
+The following anecdotes use this tag :
+<ul>
+<% @tag.appearances.each do |anecdote| %>
+	<%= render anecdote %>
+<% end %>
+</ul>

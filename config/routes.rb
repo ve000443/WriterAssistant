@@ -1,7 +1,17 @@
 WriterAssistant::Application.routes.draw do
   resources :chapters
-  resources :anecdotes
-  resources :character_relationships, only: [:create, :destroy, :delete]
+  resources :anecdotes do
+    member do
+      get :tags
+    end
+  end
+  resources :tags do
+    member do
+      get :appearances
+    end
+  end
+  resources :character_relationships, only: [:create, :destroy]
+  resources :tag_relationships, only: [:create, :destroy]
   resources :characters do 
     member do
       get :appearances

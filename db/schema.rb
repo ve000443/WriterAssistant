@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528002648) do
+ActiveRecord::Schema.define(version: 20140528153617) do
 
   create_table "anecdotes", force: true do |t|
     t.string   "subject"
@@ -59,5 +59,22 @@ ActiveRecord::Schema.define(version: 20140528002648) do
   end
 
   add_index "scenes", ["chapter_id"], name: "index_scenes_on_chapter_id"
+
+  create_table "tag_relationships", force: true do |t|
+    t.integer  "anecdote_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tag_relationships", ["anecdote_id", "tag_id"], name: "index_tag_relationships_on_anecdote_id_and_tag_id", unique: true
+  add_index "tag_relationships", ["anecdote_id"], name: "index_tag_relationships_on_anecdote_id"
+  add_index "tag_relationships", ["tag_id"], name: "index_tag_relationships_on_tag_id"
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

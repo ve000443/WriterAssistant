@@ -1,4 +1,3 @@
-<% provide(:title, @anecdote.id) %>
 <h1><%= @anecdote.subject %></h1>
 <h2>
 Anecdote ID : <%= @anecdote.id %> <br>
@@ -16,7 +15,30 @@ Anecdote ID : <%= @anecdote.id %> <br>
 	<strong>Isn't bound to any Chapter yet</strong>
 	<%= render 'bind', anecdote: @anecdote %>
 <% end %>
-Content :
+
+
+<strong>This anecdote has <%= pluralize(@anecdote.tags.count, "tag") %></strong>
+<%= form_for(TagRelationship.new) do |f| %>
+	<%#= collection_select(:scene, :scene_id, Scene.all, :id, :id, prompt: true) %>
+	<%= f.label :tag_name %>
+    <%= f.text_field :tag_name, value: "" %>
+	<%= f.hidden_field :anecdote_id, value: @anecdote.id %>
+	<%= f.submit "Tag", class: "btn btn-small" %>
+<% end %>
+<ul>
+<% @anecdote.tags.each do |tag| %>
+	<li>
+		<%= link_to tag.name, tag %>
+		<%= form_for(TagRelationship.find_by(anecdote_id: @anecdote.id, tag_id: tag.id),
+				             html: { method: :delete }) do |f| %>
+				  <%= f.submit "Delete tag", class: "btn btn-small" %>
+		<% end %>
+	</li>
+<% end %>
+</ul>
+<br>
+
+<strong>Content :</strong>
 <br>
 <span>
 	<%= @anecdote.content %>
