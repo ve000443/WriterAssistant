@@ -8,6 +8,8 @@ namespace :db do
     make_anecdotes
     make_anecdotes_links
     make_relationships
+    make_tags
+    make_tag_relationships
   end
 
   def make_chapters
@@ -40,12 +42,8 @@ namespace :db do
 
   def make_scenes_links
     scenes = Scene.all
-    scenes[0..5].each do |scene|
-      scene.chapter_id = 1
-      scene.save
-    end
-    scenes[5..10].each do |scene|
-      scene.chapter_id = 2
+    scenes[0..10].each do |scene|
+      scene.chapter_id = 1+rand(10)
       scene.save
     end
   end
@@ -66,14 +64,29 @@ namespace :db do
     end
   end
 
-
   def make_relationships
     characters = Character.all
-    appearing_characters = characters[0..2]
-    appearing_characters.each { |char| char.appear!(Scene.find(1)) }
+    appearing_characters = characters[0..15]
+    appearing_characters.each { |char| char.appear!(Scene.find(1+rand(10))) }
     appearing_characters = characters[0..6]
-    appearing_characters.each { |char| char.appear!(Scene.find(3)) }
-    appearing_characters = characters[11..20]
-    appearing_characters.each { |char| char.appear!(Scene.find(2)) }
+    appearing_characters.each { |char| char.appear!(Scene.find(1+rand(10))) }
+    appearing_characters = characters[3..10]
+    appearing_characters.each { |char| char.appear!(Scene.find(1+rand(10))) }
+  end
+
+  def make_tags
+    3.times do |n|
+      name = Faker::Lorem.word
+      Tag.create!(name: name)
+    end
+  end
+
+  def make_tag_relationships
+    Anecdote.all.each do |anecdote|
+      anecdote.tag!(Tag.find(1+rand(2)))
+    end
+    Anecdote.all.limit(6).each do |anecdote|
+      anecdote.tag!(Tag.find(2))
+    end
   end
 end
