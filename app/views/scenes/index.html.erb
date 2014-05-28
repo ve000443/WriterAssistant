@@ -8,9 +8,17 @@
 <ul class="scenes">
 	<% @scenes.each do |scene| %>
    	<%= render scene %>
-	  <%= link_to "Edit", edit_scene_path(scene) %>
-	  <%= link_to "Delete", scene, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <br><br><br>
+   	<ul>
+  		<% if scene.chapter_id %>
+   			<li>Take place during the Chapter n° <%= "#{Chapter.find(scene.chapter_id).number} : #{Chapter.find(scene.chapter_id).title}" %></li>
+   		<% end %>
+	  	<li>There is <%= pluralize(scene.characters.count, "character") %> appearing in this scene</li>
+
+		  <%= link_to "Edit", edit_scene_path(scene) %>
+		  <%= link_to "Delete", scene, method: :delete,
+	                                  data: { confirm: "You sure?" } %>
+
+	  </ul>
+	  <br><br>
   <% end %>
 </ul>

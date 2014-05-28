@@ -1,9 +1,13 @@
 <li>
-  Character n° <%= character.id %>
-   : 
-  <%= link_to character.name, character %>
-  <br>
+	<%= link_to "Character n° #{character.id} : #{character.name}", character %>
+</li>
+<ul>
+	<% if character.appearances.any? %>
+		<li><%= character.firstAppearance %></li>
+	<% end %>
+	<li>Appear in <%= pluralize(character.appearances.count, "scene") %></li>
   <%= link_to "Edit", edit_character_path(character) %>
   <%= link_to "Delete", character, method: :delete,
                                   data: { confirm: "You sure?" } %>
-</li>
+</ul>
+<br>

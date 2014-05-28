@@ -8,9 +8,13 @@
 <ul class="chapters">
 	<% @chapters.each do |chapter| %>
 	  <%= render chapter %>
+	  <ul>
+	  	<li>Contain <%= pluralize(chapter.scenes.count, "scene") %></li>
+	  	<li>Contain <%= pluralize(chapter.anecdotes.count, "anecdote") %></li>
 	  <%= link_to "Edit", edit_chapter_path(chapter) %>
 	  <%= link_to "Delete", chapter, method: :delete,
 	                                  data: { confirm: "You sure?" } %>
-	  <br><br>
+	  </ul>
+	  <br>
 	 <% end %>
 </ul>

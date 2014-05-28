@@ -5,6 +5,28 @@
                                 class: "btn btn-large btn-primary" %>
 </h2>
 
-<ul class="characters">
-  <%= render @characters %>
-</ul>
+<table width=100% style='vertical-align: top;'>
+	<tr width=100% >
+		<td width=50% style='vertical-align: top;' >
+			<ul class="characters">
+				<strong>Unused Characters :</strong>
+				<% @characters.each do |character| %>
+					<% if character.appearances.count == 0 %>
+						<%= render 'character', character: character %>
+					<% end %>
+				<% end %>
+			</ul>
+		</td>
+
+		<td width=50% style='vertical-align: top;'>
+			<ul class="characters">
+				<strong>Used Characters :</strong>
+			  	<% @characters.each do |character| %>
+					<% if character.appearances.any? %>
+						<%= render 'character', character: character %>
+					<% end %>
+				<% end %>
+			</ul>
+		</td>
+	</tr>
+</table>

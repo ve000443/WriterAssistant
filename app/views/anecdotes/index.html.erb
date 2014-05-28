@@ -8,9 +8,14 @@
 <ul class="anecdotes">
 	<% @anecdotes.each do |anecdote| %>
   	<%= render anecdote %>
+  	<ul>
+  		<% if anecdote.chapter_id %>
+  			<li>Concern the Chapter n° <%= "#{Chapter.find(anecdote.chapter_id).number} : #{Chapter.find(anecdote.chapter_id).title}" %></li>
+			<% end %>
   	<%= link_to "Edit", edit_anecdote_path(anecdote) %>
 		<%= link_to "Delete", anecdote, method: :delete,
                                   data: { confirm: "You sure?" } %>
-    <br><br>
+    </ul>
+    <br>
   <% end %>
 </ul>

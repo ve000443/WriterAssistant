@@ -7,13 +7,17 @@ Anecdote ID : <%= @anecdote.id %> <br>
                                   data: { confirm: "You sure?" } %>
 </h2>
 <% if @anecdote.chapter %>
-	Is bound to 
-	<br>
-	<%= render @anecdote.chapter %>
+	<strong>Is bound to </strong>
+	<ul>
+		<%= render @anecdote.chapter %>
+	</ul>
+	<%= render 'shared/unbind', object: @anecdote %>
 <% else %>
-	Isn't bound to any Chapter yet
+	<strong>Isn't bound to any Chapter yet</strong>
+	<%= render 'bind', anecdote: @anecdote %>
 <% end %>
-<br><br>
 Content :
 <br>
-<%= @anecdote.content %>
+<span>
+	<%= @anecdote.content %>
+</span>

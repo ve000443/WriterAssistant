@@ -21,9 +21,19 @@ Content :
   <ul>
     <%= render @scene.chapter %>
   </ul>
+  <%= render 'shared/unbind', object: @scene %>
 <% else %>
   <strong>Isn't bound to any Chapter yet</strong>
+  <%= render 'bind', scene: @scene%>
 <% end %>
+
+<strong>Add character to the scene :</strong>
+<%= form_for(CharacterRelationship.new) do |f| %>
+  <%= collection_select(:character, :character_id, Character.all, :id, :name, prompt: true) %>
+  <%= f.hidden_field :scene_id, value: @scene.id %>
+  <%= f.submit "Add to scene", class: "btn btn-small" %>
+<% end %>
+
 <% if @scene.characters.any? %>
 	<br>
 	<div class="characters">
@@ -34,6 +44,10 @@ Content :
     <% @scene.characters.each do |character| %>
     	<li>
       <%= link_to character.name, character %>
+        <%= form_for(CharacterRelationship.find_by(scene_id: @scene.id, character_id: character.id),
+                     html: { method: :delete }) do |f| %>
+          <%= f.submit "Remove from scene", class: "btn btn-small" %>
+        <% end %>
       </li>
     <% end %>
   	</ul>

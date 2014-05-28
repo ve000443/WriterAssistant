@@ -1,7 +1,7 @@
 WriterAssistant::Application.routes.draw do
   resources :chapters
   resources :anecdotes
-  resources :character_relationship, only: [:create, :destroy]
+  resources :character_relationships, only: [:create, :destroy, :delete]
   resources :characters do 
     member do
       get :appearances

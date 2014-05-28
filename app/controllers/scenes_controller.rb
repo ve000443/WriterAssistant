@@ -44,6 +44,6 @@ class ScenesController < ApplicationController
   private
 
     def scene_params
-      params.require(:scene).permit(:location, :period, :content)
+      params.require(:scene).permit(:location, :period, :content, :chapter_id)
     end
 end

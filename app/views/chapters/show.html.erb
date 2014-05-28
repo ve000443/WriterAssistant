@@ -25,6 +25,13 @@ Chapter ID : <%= @chapter.id %> <br>
 	<ul>
 	  <% @chapter.scenes.each do |scene| %>
 	   	<%= render scene %>
+	   	<% if scene.characters.any? %>
+	   		<ul><li>Starring : 
+	   		<% scene.characters.each do |character| %>
+	   			<%= link_to "#{character.name}", character %>, 
+	   		<% end %>
+	   		</li></ul>
+	   	<% end %>
     <% end %>
 	<ul>
 <% else %>

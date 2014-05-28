@@ -2,6 +2,13 @@
 <h1><%= @character.name %></h1>
 <h2>Character ID : <%= @character.id %></h2>
 
+<strong>Add appearance to the character :</strong>
+<%= form_for(CharacterRelationship.new) do |f| %>
+	<%= collection_select(:scene, :scene_id, Scene.all, :id, :id, prompt: true) %>
+	<%= f.hidden_field :character_id, value: @character.id %>
+	<%= f.submit "Appear in scene", class: "btn btn-small" %>
+<% end %>
+
 <% if @character.appearances.any? %>
 	<div class="appearances">
 		<strong id="appearances" class="stat">
@@ -11,6 +18,10 @@
 	    <% @character.appearances.each do |scene| %>
 	    	<li>
 	      <%= link_to "Scene n° #{scene.id} : #{scene.location}, #{scene.period}", scene %>
+	      <%= form_for(CharacterRelationship.find_by(scene_id: scene.id, character_id: @character.id),
+				             html: { method: :delete }) do |f| %>
+				  <%= f.submit "Disappear from scene", class: "btn btn-small" %>
+				<% end %>
 	      </li>
 	    <% end %>
 	  </ul>

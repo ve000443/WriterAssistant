@@ -1,0 +1,5 @@
+<%= form_for(scene) do |f| %>
+	Bind to chapter n°
+	<%= collection_select(:scene, :chapter_id, Chapter.all, :id, :number, prompt: true) %>
+  	<%= f.submit "Bind to", class: "btn btn-small btn-primary" %>
+<% end %>

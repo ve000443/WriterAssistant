@@ -44,6 +44,6 @@ class AnecdotesController < ApplicationController
   private
 
     def anecdote_params
-      params.require(:anecdote).permit(:subject, :content)
+      params.require(:anecdote).permit(:subject, :content, :chapter_id)
     end
 end
